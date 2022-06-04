@@ -15,7 +15,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('styles', function() {
-        return gulp.src('src/sass/*.+(scss|sass)')
+        return gulp.src('src/sass/**/*.+(scss|sass)')
                 .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
                 // .pipe(rename({
                 //     prefix: "",
@@ -35,4 +35,3 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', gulp.parallel('watch','server', 'styles') );
-
