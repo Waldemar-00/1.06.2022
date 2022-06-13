@@ -211,6 +211,12 @@
 		.advantage__icons {
 				margin: 10px;
 		}
+		.consultation {
+				text-align: center;
+		}
+		.feed-form {
+				align-items: center;
+		}
 }
 
 @media (max-width: 767px) {
@@ -256,6 +262,24 @@
 		}
 		.advantage__icons {
 				flex-direction: column;
+		}
+		.consultation .consultation__title {
+				font-size: 32px;
+				font-weight: 600;
+				line-height: 1.5;
+				padding: 0 5px;
+		}
+		.consultation .consultation__description {
+				padding: 0 5px;
+		}
+		.consultation .feed-form .input {
+				width: 275px;
+				height: 45px;
+		}
+		.consultation .button_order {
+				width: 275px;
+				height: 45px;
+				font-size: 15px;
 		}
 }
 
@@ -324,4 +348,28 @@
 
 .feed-form .button_order {
 		margin-top: 5px;
+}
+
+.carousel {
+		padding: 82px 0;
+		position: relative;
+}
+
+.carousel__inner {
+		width: 750px;
+		margin: 0 auto;
+}
+
+.carousel .slick-prev, .carousel .slick-next {
+		position: absolute;
+		top: 50%;
+		left: -103px;
+		transform: translateY(-50%);
+		border: none;
+		background: #ffffff;
+}
+
+.carousel .slick-next {
+		right: -103px;
+		left: auto;
 }
