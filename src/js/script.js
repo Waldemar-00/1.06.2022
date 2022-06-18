@@ -25,6 +25,9 @@ $(document).ready(function(){
       },],
 });
 });
+document.querySelector('::marker').addEventListener('click', function () {
+    marker.style.backgroundColor = grey;
+ });
 //TINY SLIDER !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // const slider = tns({
 //     container: '.carousel__inner',
