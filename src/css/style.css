@@ -321,6 +321,11 @@
 				font-size: 9px;
 				width: 84px;
 		}
+		.feedback .feedback__el img {
+				width: 150px;
+				height: 150px;
+				margin-right: 17px;
+		}
 }
 
 .consultation {
@@ -611,4 +616,61 @@
 
 .catalog-item__back:hover {
 		color: #c70101;
+}
+
+.feedback__header {
+		color: #0d0d0d;
+		font-size: 30px;
+		font-weight: 700;
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 70px;
+}
+
+.feedback__elems {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+}
+
+.feedback__el {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+}
+
+.feedback__el img {
+		width: 169px;
+		height: 169px;
+		margin-right: 61px;
+}
+
+.feedback__el__txt {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+}
+
+.feedback__el__txt .allName {
+		color: #0d0d0d;
+		font-size: 18px;
+		font-weight: 700;
+		text-align: left;
+		margin-bottom: 14px;
+}
+
+.feedback__el__txt .numMar {
+		color: #646464;
+		font-size: 14px;
+		font-weight: 300;
+		text-align: left;
+		margin-bottom: 19px;
+}
+
+.feedback__el__txt .text {
+		color: #0d0d0d;
+		font-size: 16px;
+		font-weight: 300;
+		text-align: left;
+		margin-bottom: 100px;
 }
