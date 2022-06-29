@@ -49,6 +49,28 @@ $('.button_mini').each(function(i) {
     $('.overlay, #order').fadeIn('slow');
   });
 });
+function valideForms(form) {
+  $(form).validate({
+    rules: {
+     name: "required",
+     email: {
+       required: true,
+       email: true
+     }
+   },
+   messages: {
+     name: "Пожалуйста, укажите свое имя",
+     phone: "Пожалуйста, укажите свой номер телефона",
+     email: {
+       required: "Нам нужен ваш адрес электронной почты, <br> чтобы связаться с вами",
+       email: "Ваш адрес электронной почты должен быть <br> в формате name@domain.com"
+     }
+   }
+  });
+};
+valideForms('#first-form');
+valideForms('#main-Form');
+valideForms('#main-Order');
  });
  //TABS
  $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
