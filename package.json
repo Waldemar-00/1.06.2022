@@ -18,5 +18,8 @@
     "gulp-sass": "^5.1.0",
     "jshint": "^2.13.4",
     "sass": "^1.50.1"
+  },
+  "dependencies": {
+    "node.js": "^0.0.1-security"
   }
 }
