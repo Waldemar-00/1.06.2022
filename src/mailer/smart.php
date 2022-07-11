@@ -13,8 +13,8 @@ $mail->CharSet = 'utf-8';
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = '0112358ff@gmail.com'; // Enable SMTP authentication                 // Наш логин
-$mail->Password = 'G335658828320062008l';                           // Наш пароль от ящика
+$mail->Username = '1000ll@gmail.com'; // Enable SMTP authentication                 // Наш логин
+$mail->Password = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa';                           // Наш пароль от ящика
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;      // TCP port to connect to
 // Gmail SMTP server address: smtp.gmail.com
@@ -23,8 +23,8 @@ $mail->Port = 465;      // TCP port to connect to
 // Gmail SMTP password: The password that you use to log in to Gmail
 // Gmail SMTP port (TLS): 587
 // Gmail SMTP port (SSL): 465
-$mail->setFrom('0112358ff@gmail.com', 'Site Pulse');   // От кого письмо 
-$mail->addAddress('0112358uu@gmail.com');     // Add a recipient
+$mail->setFrom('1000ll@gmail.com', 'Site Pulse');   // От кого письмо 
+$mail->addAddress('1010ll@gmail.com');     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
