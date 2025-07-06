@@ -1,30 +1,62 @@
 <?php 
 
-$name = $_POST['name'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
+// Input validation and sanitization
+function sanitizeInput($input) {
+    return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
+}
+
+function validateEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+// Check if POST data exists and validate
+if (!isset($_POST['name']) || !isset($_POST['phone']) || !isset($_POST['email'])) {
+    http_response_code(400);
+    exit('Missing required fields');
+}
+
+$name = sanitizeInput($_POST['name']);
+$phone = sanitizeInput($_POST['phone']);
+$email = sanitizeInput($_POST['email']);
+
+// Validate inputs
+if (empty($name) || strlen($name) < 2) {
+    http_response_code(400);
+    exit('Invalid name');
+}
+
+if (!validateEmail($email)) {
+    http_response_code(400);
+    exit('Invalid email address');
+}
+
+if (empty($phone)) {
+    http_response_code(400);
+    exit('Invalid phone number');
+}
 
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
 $mail->CharSet = 'utf-8';
 
-// $mail->SMTPDebug = 3;                               // Enable verbose debug output
+// Load SMTP configuration from environment variables or config file
+// Never hardcode credentials in source code!
+$smtp_host = getenv('SMTP_HOST') ?: 'smtp.gmail.com';
+$smtp_username = getenv('SMTP_USERNAME') ?: 'your-email@gmail.com';
+$smtp_password = getenv('SMTP_PASSWORD') ?: 'your-app-password';
+$from_email = getenv('FROM_EMAIL') ?: 'your-email@gmail.com';
+$to_email = getenv('TO_EMAIL') ?: 'recipient@gmail.com';
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = '1000ll@gmail.com'; // Enable SMTP authentication                 // Наш логин
-$mail->Password = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa';                           // Наш пароль от ящика
-$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;      // TCP port to connect to
-// Gmail SMTP server address: smtp.gmail.com
-// Gmail SMTP name: Your full name
-// Gmail SMTP username: Your full Gmail address (e.g. you@gmail.com)
-// Gmail SMTP password: The password that you use to log in to Gmail
-// Gmail SMTP port (TLS): 587
-// Gmail SMTP port (SSL): 465
-$mail->setFrom('1000ll@gmail.com', 'Site Pulse');   // От кого письмо 
-$mail->addAddress('1010ll@gmail.com');     // Add a recipient
+$mail->isSMTP();
+$mail->Host = $smtp_host;
+$mail->SMTPAuth = true;
+$mail->Username = $smtp_username;
+$mail->Password = $smtp_password;
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
+
+$mail->setFrom($from_email, 'Site Pulse');
+$mail->addAddress($to_email);
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -36,14 +68,16 @@ $mail->isHTML(true);                                  // Set email format to HTM
 $mail->Subject = 'Данные';
 $mail->Body    = '
 		Пользователь оставил данные <br> 
-	Имя: ' . $name . ' <br>
-	Номер телефона: ' . $phone . '<br>
-	E-mail: ' . $email . '';
+	Имя: ' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . ' <br>
+	Номер телефона: ' . htmlspecialchars($phone, ENT_QUOTES, 'UTF-8') . '<br>
+	E-mail: ' . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '';
 
 if(!$mail->send()) {
-    return false;
+    http_response_code(500);
+    exit('Failed to send email');
 } else {
-    return true;
+    http_response_code(200);
+    echo 'Email sent successfully';
 }
 
 ?>

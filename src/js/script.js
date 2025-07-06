@@ -80,19 +80,20 @@ $('input[name=phone]').mask("+7 (999) 999-99-99");
 // });
 $('form').submit(function(event) {
           event.preventDefault();
-          if(!$(this).valid()) {
+          var $form = $(this);
+          if(!$form.valid()) {
               return;
           }
           $.ajax({
             type: "POST",
             url: 'mailer/smart.php',
-            data: $(this).serialize(),
+            data: $form.serialize(),
           }).done(function() {
-            $(this).find('input').val('');
+            $form.find('input').val('');
             $('#consultation, #order').fadeOut('slow');
             $('.overlay, #thanks').fadeIn('slow');
 
-            $('form').trigger('reset');
+            $form.trigger('reset');
           });
     return false;
 });
@@ -139,9 +140,10 @@ $('form').submit(function(event) {
       .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
       .closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
 });
-document.querySelector('::marker').addEventListener('click', function () {
-    marker.style.backgroundColor = grey;
- });
+// Removed malformed code that was causing JavaScript errors
+// document.querySelector('::marker').addEventListener('click', function () {
+//     marker.style.backgroundColor = grey;
+// });
 
 
 
